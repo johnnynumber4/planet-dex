@@ -1,0 +1,29 @@
+.main {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .title {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .nav li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: #0070f3;
+  }
+  
+  .nav a:hover {
+    text-decoration: underline;
+  }
+  
