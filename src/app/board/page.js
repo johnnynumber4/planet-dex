@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { workflowStates } from '../../constants/constants';
 import Modal from 'react-modal'; // Import a modal library or your custom modal
-import styles from './Board.module.css';
+import styles from './board.module.css';
 import { Dialog, DialogActions, DialogContent, Button, Grid, Box, Typography } from '@mui/material';
 
 const Board = () => {
