@@ -27,7 +27,6 @@ export default function RootLayout({ children }) {
         <SessionProvider>
           <CssBaseline />
           <Box sx={{ display: 'flex' }}>
-            {/* Top Bar */}
             <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
               <Toolbar>
                 <IconButton
@@ -39,9 +38,11 @@ export default function RootLayout({ children }) {
                 >
                   <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" noWrap component="div">
-                  Planet Dex
-                </Typography>
+                <Link href="/" passHref>
+                  <Typography variant="h6" noWrap sx={{ textDecoration: 'none', color: 'none' }}>
+                    Planet Dex
+                  </Typography>
+                </Link>
                 {/* Add AuthButton for login/logout */}
                 <Box sx={{ flexGrow: 1 }} />
                 <AuthButton /> {/* Added AuthButton here */}

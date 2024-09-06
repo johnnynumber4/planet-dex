@@ -6,13 +6,6 @@ const NavBar = ({ toggleMobileMenu }) => {
   return (
     <List>
       <ListItem component="div" onClick={toggleMobileMenu}>
-        <Link legacyBehavior href="/" passHref>
-          <a>
-            <ListItemText primary="Home" />
-          </a>
-        </Link>
-      </ListItem>
-      <ListItem component="div" onClick={toggleMobileMenu}>
         <Link legacyBehavior href="/planets" passHref>
           <a>
             <ListItemText primary="Planets" />
