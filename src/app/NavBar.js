@@ -5,23 +5,47 @@ import { List, ListItem, ListItemText } from '@mui/material';
 const NavBar = ({ toggleMobileMenu }) => {
   return (
     <List>
-      <ListItem button component={Link} href="/" onClick={toggleMobileMenu}>
-        <ListItemText primary="Home" />
+      <ListItem component="div" onClick={toggleMobileMenu}>
+        <Link legacyBehavior href="/" passHref>
+          <a>
+            <ListItemText primary="Home" />
+          </a>
+        </Link>
       </ListItem>
-      <ListItem button component={Link} href="/planets" onClick={toggleMobileMenu}>
-        <ListItemText primary="Planets" />
+      <ListItem component="div" onClick={toggleMobileMenu}>
+        <Link legacyBehavior href="/planets" passHref>
+          <a>
+            <ListItemText primary="Planets" />
+          </a>
+        </Link>
       </ListItem>
-      <ListItem button component={Link} href="/projects" onClick={toggleMobileMenu}>
-        <ListItemText primary="Projects" />
+      <ListItem component="div" onClick={toggleMobileMenu}>
+        <Link legacyBehavior href="/projects" passHref>
+          <a>
+            <ListItemText primary="Projects" />
+          </a>
+        </Link>
       </ListItem>
-      <ListItem button component={Link} href="/tasks" onClick={toggleMobileMenu}>
-        <ListItemText primary="Tasks" />
+      <ListItem component="div" onClick={toggleMobileMenu}>
+        <Link legacyBehavior href="/tasks" passHref>
+          <a>
+            <ListItemText primary="Tasks" />
+          </a>
+        </Link>
       </ListItem>
-      <ListItem button component={Link} href="/calendar" onClick={toggleMobileMenu}>
-        <ListItemText primary="Calendar" />
+      <ListItem component="div" onClick={toggleMobileMenu}>
+        <Link legacyBehavior href="/calendar" passHref>
+          <a>
+            <ListItemText primary="Calendar" />
+          </a>
+        </Link>
       </ListItem>
-      <ListItem button component={Link} href="/board" onClick={toggleMobileMenu}>
-        <ListItemText primary="Mission Control" />
+      <ListItem component="div" onClick={toggleMobileMenu}>
+        <Link legacyBehavior href="/board" passHref>
+          <a>
+            <ListItemText primary="Mission Control" />
+          </a>
+        </Link>
       </ListItem>
     </List>
   );
