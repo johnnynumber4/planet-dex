@@ -2,12 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { workflowStates } from '../../constants/constants';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import { Box, Container, Typography } from '@mui/material';
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');
-  const [newTaskDescription, setNewTaskDescription] = useState(''); // New state for task description
-  const [newTaskState, setNewTaskState] = useState(workflowStates[0]); // Default to the first state
+  const [newTaskDescription, setNewTaskDescription] = useState('');
+  const [newTaskState, setNewTaskState] = useState(workflowStates[0]);
   const [newTaskProjectId, setNewTaskProjectId] = useState('');
   const [newTaskEpic, setNewTaskEpic] = useState('');
   const [newTaskSprint, setNewTaskSprint] = useState('');
@@ -108,123 +112,118 @@ export default function TasksPage() {
   };
 
   return (
-    <div>
-      <h1>Tasks</h1>
-      <div>
-        <input
-          type="text"
-          placeholder="Task Title"
+    <Container maxWidth="md" sx={{ mt: 4 }}>
+      <Box sx={{ mb: 2 }}>
+        <Typography variant="h4" sx={{ mb: 2 }}>
+          Task Management
+        </Typography>
+        <TextField
+          label="New Task"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
+          fullWidth
+          margin="normal"
         />
-        <textarea
-          placeholder="Task Description"
+        <TextField
+          label="Description"
           value={newTaskDescription}
           onChange={(e) => setNewTaskDescription(e.target.value)}
+          fullWidth
+          margin="normal"
         />
-        <select
+        <TextField
+          select
+          label="State"
           value={newTaskState}
           onChange={(e) => setNewTaskState(e.target.value)}
+          fullWidth
+          margin="normal"
         >
           {workflowStates.map((state) => (
-            <option key={state} value={state}>
+            <MenuItem key={state} value={state}>
               {state}
-            </option>
+            </MenuItem>
           ))}
-        </select>
-        <select
-          value={newTaskProjectId}
-          onChange={(e) => setNewTaskProjectId(e.target.value)}
+        </TextField>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            // Handle add task logic here
+          }}
+          sx={{ mt: 2 }}
         >
-          <option value="">Select Project</option>
-          {allProjects.map((project) => (
-            <option key={project._id} value={project._id}>
-              {project.name}
-            </option>
-          ))}
-        </select>
-        <input
-          type="text"
-          placeholder="Epic"
-          value={newTaskEpic}
-          onChange={(e) => setNewTaskEpic(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Sprint"
-          value={newTaskSprint}
-          onChange={(e) => setNewTaskSprint(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Assigned Person"
-          value={newTaskAssignedPerson}
-          onChange={(e) => setNewTaskAssignedPerson(e.target.value)}
-        />
-        <button onClick={handleCreateTask}>Create Task</button>
-      </div>
+          Add Task
+        </Button>
+      </Box>
       <ul>
         {tasks.map((task) => (
-          <li key={task._id}>
-            {editingTask && editingTask._id === task._id ? (
+          <li key={task.id}>
+            {editingTask && editingTask.id === task.id ? (
               <div>
-                <input
-                  type="text"
-                  value={editingTask.title}
-                  onChange={(e) => setEditingTask({ ...editingTask, title: e.target.value })}
+                <TextField
+                  label="Edit Task"
+                  value={newTask}
+                  onChange={(e) => setNewTask(e.target.value)}
+                  fullWidth
+                  margin="normal"
                 />
-                <textarea
-                  value={editingTask.taskDescription}
-                  onChange={(e) => setEditingTask({ ...editingTask, taskDescription: e.target.value })}
+                <TextField
+                  label="Description"
+                  value={newTaskDescription}
+                  onChange={(e) => setNewTaskDescription(e.target.value)}
+                  fullWidth
+                  margin="normal"
                 />
-                <select
-                  value={editingTask.state}
-                  onChange={(e) => setEditingTask({ ...editingTask, state: e.target.value })}
+                <TextField
+                  select
+                  label="State"
+                  value={newTaskState}
+                  onChange={(e) => setNewTaskState(e.target.value)}
+                  fullWidth
+                  margin="normal"
                 >
                   {workflowStates.map((state) => (
-                    <option key={state} value={state}>
+                    <MenuItem key={state} value={state}>
                       {state}
-                    </option>
+                    </MenuItem>
                   ))}
-                </select>
-                <select
-                  value={editingTask.projectId}
-                  onChange={(e) => setEditingTask({ ...editingTask, projectId: e.target.value })}
+                </TextField>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => {
+                    // Handle save task logic here
+                  }}
+                  sx={{ mt: 2, mr: 2 }}
                 >
-                  <option value="">Select Project</option>
-                  {allProjects.map((project) => (
-                    <option key={project._id} value={project._id}>
-                      {project.name}
-                    </option>
-                  ))}
-                </select>
-                <input
-                  type="text"
-                  value={editingTask.epic}
-                  onChange={(e) => setEditingTask({ ...editingTask, epic: e.target.value })}
-                />
-                <input
-                  type="text"
-                  value={editingTask.sprint}
-                  onChange={(e) => setEditingTask({ ...editingTask, sprint: e.target.value })}
-                />
-                <input
-                  type="text"
-                  value={editingTask.assignedPerson}
-                  onChange={(e) => setEditingTask({ ...editingTask, assignedPerson: e.target.value })}
-                />
-                <button onClick={handleUpdateTask}>Update Task</button>
-                <button onClick={cancelEditing}>Cancel</button>
+                  Save
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  onClick={cancelEditing}
+                  sx={{ mt: 2 }}
+                >
+                  Cancel
+                </Button>
               </div>
             ) : (
               <div>
                 Title: {task.title} - State: {task.state} - Project: {projectMap[task.projectId]} - Sprint: {task.sprint ? task.sprint : 'Backlog'} - Task Description: {task.taskDescription} - Assigned Person: {task.assignedPerson ? task.assignedPerson : 'Unassigned'}
-                <button onClick={() => startEditingTask(task)}>Edit</button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => startEditingTask(task)}
+                  sx={{ ml: 2 }}
+                >
+                  Edit
+                </Button>
               </div>
             )}
           </li>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 }
